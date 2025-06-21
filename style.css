@@ -1,111 +1,153 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap');
-
+/* RESET básico */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+/* Corpo da página com fonte elegante e fundo neutro */
 body {
-    background-color: #0a0a0a;
-    font-family: 'Cormorant Garamond', serif;
-    color: #e0e0e0;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
+  font-family: 'Georgia', serif;
+  background: #fdf6e3; /* tom creme suave */
+  color: #3e3a39;
+  line-height: 1.6;
+  padding: 0 1rem 3rem; /* espaço inferior para o rodapé fixo */
 }
 
+/* Links (se precisar) */
+a {
+  color: #7b5e4c;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* --- CAPA --- */
+.section.cover {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #a17c6b 0%, #d9c7b8 100%);
+  box-shadow: inset 0 0 150px rgba(0,0,0,0.15);
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.section.cover::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    repeating-radial-gradient(circle at 50% 50%, rgba(255 255 255 / 0.1), rgba(255 255 255 / 0.1) 2px, transparent 3px, transparent 6px),
+    repeating-linear-gradient(45deg, rgba(0 0 0 / 0.02), rgba(0 0 0 / 0.02) 1px, transparent 2px, transparent 5px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.section.cover .content {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  padding: 1rem 2rem;
+  background: rgba(255 255 255 / 0.85);
+  border-radius: 15px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  border: 3px solid #a17c6b;
+}
+
+.section.cover h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #5a3d2b;
+  text-shadow: 2px 2px 3px rgba(0,0,0,0.15);
+  margin-bottom: 1rem;
+  font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+}
+
+.section.cover .sub {
+  font-size: 1.3rem;
+  font-style: italic;
+  color: #7b5e4c;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  line-height: 1.4;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Responsividade para telas menores */
+@media(max-width: 600px) {
+  .section.cover h1 {
+    font-size: 2.5rem;
+  }
+  .section.cover .sub {
+    font-size: 1rem;
+  }
+}
+
+/* --- SEÇÕES DE POEMAS E FINAL --- */
 .section {
-    min-height: 100vh;
-    width: 100%;
-    padding: 60px 10%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    position: relative;
-    transition: all 0.8s ease-in-out;
+  max-width: 720px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+  color: #3e3a39;
 }
 
-.section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url('images/texture.png') repeat;
-    opacity: 0.05;
-    pointer-events: none;
+.section .content h2 {
+  font-family: 'Georgia', serif;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #a17c6b;
+  padding-bottom: 0.5rem;
+  color: #5a3d2b;
 }
 
-.cover {
-    background: url('images/capa.png') center/cover no-repeat;
+.section .content p {
+  white-space: pre-line; /* respeitar quebras */
+  font-size: 1.1rem;
+  line-height: 1.6;
+  letter-spacing: 0.03em;
+  font-weight: 400;
 }
 
-.cover h1 {
-    font-size: 4em;
-    color: #fff;
-    background-color: rgba(0,0,0,0.5);
-    padding: 10px 20px;
-    border-radius: 10px;
+/* Estilo especial para o texto final */
+.section.end .content .end-text {
+  font-style: italic;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #7b5e4c;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.5;
 }
 
-.sub {
-    color: #d8b45a;
-    margin-top: 20px;
-    font-size: 1.2em;
-}
-
-.content {
-    max-width: 800px;
-    z-index: 2;
-}
-
-h2 {
-    color: #d8b45a;
-    font-size: 2.5em;
-    margin-bottom: 30px;
-}
-
-p {
-    font-size: 1.4em;
-    line-height: 2;
-    text-align: justify;
-}
-
-.end {
-    background-color: #111;
-}
-
-.end-text {
-    color: #d8b45a;
-    text-align: center;
-    font-size: 1.6em;
-}
-
-@media (max-width: 768px) {
-    .cover h1 {
-        font-size: 2.5em;
-    }
-
-    h2 {
-        font-size: 2em;
-    }
-
-    p {
-        font-size: 1.1em;
-    }
-}
-
+/* --- RODAPÉ FIXO (RDF) --- */
 #rdf-footer {
   position: fixed;
   bottom: 10px;
   right: 10px;
   background-color: rgba(0,0,0,0.7);
   color: white;
-  padding: 5px 10px;
+  padding: 5px 12px;
   font-weight: bold;
   border-radius: 5px;
   font-family: Arial, sans-serif;
   font-size: 14px;
   z-index: 1000;
   cursor: default;
+  user-select: none;
+  box-shadow: 0 0 8px rgba(0,0,0,0.4);
 }
 
+/* Pequenas melhorias visuais */
+p {
+  margin-bottom: 1rem;
+}
